@@ -13,7 +13,6 @@ export const addUer = async (req, res) => {
             name,
             email,
             phone,
-            password,
             role
         });
         let inviteURL = `http://localhost:8080/api/v1/auth/role-setup/${newUser._id}`;

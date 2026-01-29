@@ -3,7 +3,7 @@ import { addUer } from "../Controller/aminControler.js";
 import { 
     adminMiddleware, 
     authMiddleware 
-} from "../Middleware/authMiddleware";
+} from "../Middleware/authMiddleware.js";
 
 const adminRouter = express.Router();
 
