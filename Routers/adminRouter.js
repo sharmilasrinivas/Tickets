@@ -14,7 +14,7 @@ const adminRouter = express.Router();
 
 
 // Post Method
-adminRouter.post("/create-user",authMiddleware, adminMiddleware, addUer);
+adminRouter.post("/create-user",authMiddleware, adminMiddleware, addUser);
 
 // Put Method
 adminRouter.put("/titcket/update-state",authMiddleware, adminMiddleware, updateTicketState )
