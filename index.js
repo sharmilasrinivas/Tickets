@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 import adminRouter from './Routers/adminRouter.js';
 import { authMiddleware } from './Middleware/authMiddleware.js';
 import ticketRoute from './Routers/ticketRouter.js';
-
+import dns from 'node:dns';
 dns.setServers(['8.8.8.8','1.1.1.1']);
 
 dotenv.config();
