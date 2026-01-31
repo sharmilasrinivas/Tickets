@@ -8,7 +8,7 @@ import adminRouter from './Routers/adminRouter.js';
 import { authMiddleware } from './Middleware/authMiddleware.js';
 import ticketRoute from './Routers/ticketRouter.js';
 
-//dns.setServers(['8.8.8.8','1.1.1.1']);
+dns.setServers(['8.8.8.8','1.1.1.1']);
 
 dotenv.config();
 const port = process.env.PORT || 8080;
