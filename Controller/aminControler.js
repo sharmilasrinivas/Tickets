@@ -2,7 +2,7 @@ import User from "../Models/userModel.js";
 import transporter from "../Config/nodemailerAuth.js";
 
 
-export const addUer = async (req, res) => {
+export const addUser = async (req, res) => {
     try {
         const { name, email, phone, role } = req.body;
         const existingUser = await User.findOne({ email });

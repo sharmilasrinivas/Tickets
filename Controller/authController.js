@@ -1,3 +1,4 @@
+import transporter from "../Config/nodemailerAuth.js";
 import User from "../Models/userModel.js";
 import generateToken from "../Utils/generateToken.js";
 
@@ -181,8 +182,29 @@ export const acceptUserRole = async (req, res) => {
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
+        const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+        const generateString = (length) => {
+        let result = '';
+        const charactersLength = characters.length;
+        for ( let i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }   
+
+        return result;
+        }
+        const tempPassword =await generateString(8);
+        user.password = tempPassword;
         user.isrRoleAccepted = true;
         await user.save();
+
+        // Send email notification
+        const mailOptions = {
+            to: user.email,
+            subject: 'Welcome to portal',
+            text: `Hello ${user.name},\n\nYour role of ${user.role} has been accepted. You can now log in to your account using the following temporary password: ${tempPassword}\n\nPlease change your password after logging in.\n\nBest regards,\nAdmin Team`
+        };
+        await transporter.sendMail(mailOptions);
         res.status(200).json({ message: "User role accepted successfully", user: {
             id: user._id,
             name: user.name,
@@ -195,5 +217,3 @@ export const acceptUserRole = async (req, res) => {
         res.status(500).json({ message: "Server error", error: error.message });
     }
 };
-
-

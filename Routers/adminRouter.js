@@ -4,6 +4,9 @@ import {
     adminMiddleware, 
     authMiddleware 
 } from "../Middleware/authMiddleware.js";
+import { 
+    updateTicketState
+ } from "../Controller/ticketControler.js";
 
 const adminRouter = express.Router();
 
@@ -14,7 +17,7 @@ const adminRouter = express.Router();
 adminRouter.post("/create-user",authMiddleware, adminMiddleware, addUer);
 
 // Put Method
-
+adminRouter.put("/titcket/update-state",authMiddleware, adminMiddleware, updateTicketState )
 
 // Delete Method
 
